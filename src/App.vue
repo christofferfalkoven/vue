@@ -7,7 +7,7 @@
                 <text-reader @load="text = $event"></text-reader>
                 <simple-upload></simple-upload>
                 <button v-on:click="count++">You clicked me {{ count }} times.</button>
-                <button v-on:click="regEx">Convery to regEX.</button>
+                <button v-on:click="regEx">CONVERT to regEX.</button>
 
             </div>
         </div>
