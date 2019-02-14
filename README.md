@@ -1,5 +1,11 @@
 # upload-vue
 
+
+### Serve with yarn
+```
+yarn serve
+```
+
 ## Project setup
 ```
 npm install
