@@ -7,9 +7,14 @@
                 <text-reader @load="text = $event"></text-reader>
                 <simple-upload></simple-upload>
                 <button v-on:click="count++">You clicked me {{ count }} times.</button>
-                <button v-on:click="regEx">CONVERT to regEX.</button>
+
 
             </div>
+
+            <button  v-on:click="regEx">CONVERT to regEX.</button>
+            <chart-test>
+
+            </chart-test>
         </div>
     </div>
 </template>
@@ -17,58 +22,72 @@
 <script>
     import SimpleUpload from './SimpleUpload.vue';
     import TextReader from "./TextReader";
+    import ChartTest from "./ChartTest";
+
 
     export default {
         name: "App",
-        data: () => ({ text: "" ,regularExpression: "", count : 0}),
-        components: {SimpleUpload, TextReader},
+        data: () => ({
+            text: "" ,
+            regularExpression: "",
+            count : 0,
+            blood_sugar_dict:{},
+            num_of_low:0,
+            num_of_high:0,
+            num_of_good:0
+        }),
+
+        components: {SimpleUpload, TextReader, ChartTest},
+
         methods:{
             regEx: function () {
 
-                let reggie = new RegExp(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/mgi);
-                console.log("yo");
-                let fisfis = "201811090310".match(reggie);
-                console.log(fisfis);
-                console.log("yo2");
-                let url = this.text.toString();
-                let hej;
-                //(?:(?:.*))
-                hej = new RegExp(/(Glucose\|\d+\.\d)(?:([^:]*))(20\d{10})/mgi);
-                let heej;
-                heej = new RegExp(/((?<=Glucose\|)\d+\.\d)/mgi);
-                let yo2;
-                let heej2;
-                // ||201811090310<CR>
-                heej2 = new RegExp(/(?:|)(?:|)(20\d{10})(?=(<CR>))/mgi);
-                yo2 = url.match(heej);
-                let yo3;
-                yo3 = url.match(heej2);
-                console.log(yo3.length);
-                console.log(yo2.length);
-                console.log(yo2);
-                console.log(yo3);
-                // Glucose|6.2|mmol
-                //let hej2 = new RegExp(/20[0-9]{10}/mgi)
-                //let example = "Read on port: \\\\?\\hid#vid_1a79&pid_7410&mi_00#7&2b31b1d0&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}<STX>4R|1706|^^^Glucose|16.2|mmol/L^P||F/M0/T1||201811090310<CR><ETB>B8<CR><LF>Read on port: \\\\\\\\?\\\\hid#vid_1a79&pid_7410&mi_00#7&2b31b1d0&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}<STX>4R|1706|^^^Glucose|6.9|mmol/L^P||F/M0/T1||201711090221<CR><ETB>B8<CR><LF>\""
-                // let re = new RegExp('Glucose');
-                // this.text = this.text.match(hej);
+                let glucose_regex = new RegExp(/((?<=Glucose\|)\d+\.\d)/mgi);
+                let date_regex = new RegExp(/(?:|)(?:|)(20\d{10})(?=(<CR>))/mgi);
+                let glucose_match = this.text.match(glucose_regex);
+                let date_match = this.text.match(date_regex);
+                let blood_sugar_dict;
 
-                let yo;
-                //let yo2;
-                //let test;
-                //test = hej2.exec(url)
-                // let hej3 = new RegExp(/20[0-9]{10}/mgi)
-
-                yo = url.match(hej)
-                console.log(yo)
-                let hej2;
-                hej2 = new RegExp(/20[0-9]{10}/mgi)
-                //yo2 = url.match(hej2)
-                let blood_sugar_dict = {};
-                blood_sugar_dict = yo3.reduce((obj, k, i) => ({...obj, [k]: yo2[i] }), {})
+                this.num_of_low = 0;
+                this.num_of_high = 0;
+                this.num_of_good = 0;
+                for(let i = 0; i<glucose_match.length; i++){
+                    if (glucose_match[i] < 4){
+                        this.num_of_low += 1;
+                    }
+                    if (glucose_match[i] > 13){
+                        this.num_of_high += 1;
+                    }
+                    else{
+                        this.num_of_good += 1;
+                    }
+                }
 
 
-                console.log(blood_sugar_dict)
+                for (let i = 0; i<date_match.length; i++) {
+                    date_match[i] = this.insert(date_match[i], 4, "-")
+                    date_match[i] = this.insert(date_match[i], 7, "-")
+                    date_match[i] = this.insert(date_match[i], 10, " ")
+                    date_match[i] = this.insert(date_match[i], 13, ":")
+                    date_match[i] = new Date(date_match[i])
+                }
+                //this.text= date_match.reduce((obj, k, i) => ({...obj, [k]: glucose_match[i] }), {})
+                blood_sugar_dict = date_match.reduce((obj, k, i) => ({...obj, [k]: glucose_match[i] }), {})
+
+                //this.blood_sugar_dict = blood_sugar_dict
+                //console.log(blood_sugar_dict)
+                //for (let i = 0; blood_sugar_dict.length(); i++)
+                for (const [key, value] of Object.entries(blood_sugar_dict)){
+                    this.blood_sugar_dict[key] = value;
+                }
+                //this.$refs.myComponent.data = [this.num_of_low, this.num_of_high, this.num_of_good];
+                //console.log(this.blood_sugar_dict)
+               // console.log(blood_sugar_dict)
+                //console.
+                //this.blood_sugar_dict =
+            },
+            insert(str, index, value) {
+                return str.substr(0, index) + value + str.substr(index);
             }
         }
     }
