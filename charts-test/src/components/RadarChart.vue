@@ -1,8 +1,8 @@
 <script>
-    import { PolarArea } from 'vue-chartjs'
+    import { Radar } from 'vue-chartjs'
 
     export default {
-        extends: PolarArea,
+        extends: Radar,
         mounted () {
             this.renderChart({
                 labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
@@ -10,6 +10,7 @@
                     {
                         label: 'My First dataset',
                         backgroundColor: 'rgba(179,181,198,0.2)',
+                        borderColor: 'rgba(179,181,198,1)',
                         pointBackgroundColor: 'rgba(179,181,198,1)',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
@@ -19,6 +20,7 @@
                     {
                         label: 'My Second dataset',
                         backgroundColor: 'rgba(255,99,132,0.2)',
+                        borderColor: 'rgba(255,99,132,1)',
                         pointBackgroundColor: 'rgba(255,99,132,1)',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
