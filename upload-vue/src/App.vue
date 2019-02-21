@@ -23,6 +23,7 @@
     import SimpleUpload from './SimpleUpload.vue';
     import TextReader from "./TextReader";
     import ChartTest from "./ChartTest";
+    require('./assets/main.css');
 
 
     export default {
@@ -32,9 +33,9 @@
             regularExpression: "",
             count : 0,
             blood_sugar_dict:{},
-            num_of_low:0,
-            num_of_high:0,
-            num_of_good:0
+
+            glucose_match: [],
+            date_match: []
         }),
 
         components: {SimpleUpload, TextReader, ChartTest},
@@ -44,35 +45,25 @@
 
                 let glucose_regex = new RegExp(/((?<=Glucose\|)\d+\.\d)/mgi);
                 let date_regex = new RegExp(/(?:|)(?:|)(20\d{10})(?=(<CR>))/mgi);
-                let glucose_match = this.text.match(glucose_regex);
-                let date_match = this.text.match(date_regex);
+                this.glucose_match = this.text.match(glucose_regex);
+                this.date_match = this.text.match(date_regex);
                 let blood_sugar_dict;
 
-                this.num_of_low = 0;
-                this.num_of_high = 0;
-                this.num_of_good = 0;
-                for(let i = 0; i<glucose_match.length; i++){
-                    if (glucose_match[i] < 4){
-                        this.num_of_low += 1;
-                    }
-                    if (glucose_match[i] > 13){
-                        this.num_of_high += 1;
-                    }
-                    else{
-                        this.num_of_good += 1;
-                    }
-                }
+                //this.num_of_low = 0;
+                //this.num_of_high = 0;
+                //this.num_of_good = 0;
 
 
-                for (let i = 0; i<date_match.length; i++) {
-                    date_match[i] = this.insert(date_match[i], 4, "-")
-                    date_match[i] = this.insert(date_match[i], 7, "-")
-                    date_match[i] = this.insert(date_match[i], 10, " ")
-                    date_match[i] = this.insert(date_match[i], 13, ":")
-                    date_match[i] = new Date(date_match[i])
+
+                for (let i = 0; i<this.date_match.length; i++) {
+                    this.date_match[i] = this.insert(this.date_match[i], 4, "-")
+                    this.date_match[i] = this.insert(this.date_match[i], 7, "-")
+                    this.date_match[i] = this.insert(this.date_match[i], 10, " ")
+                    this.date_match[i] = this.insert(this.date_match[i], 13, ":")
+                    this.date_match[i] = new Date(this.date_match[i])
                 }
                 //this.text= date_match.reduce((obj, k, i) => ({...obj, [k]: glucose_match[i] }), {})
-                blood_sugar_dict = date_match.reduce((obj, k, i) => ({...obj, [k]: glucose_match[i] }), {})
+                blood_sugar_dict = this.date_match.reduce((obj, k, i) => ({...obj, [k]: this.glucose_match[i] }), {})
 
                 //this.blood_sugar_dict = blood_sugar_dict
                 //console.log(blood_sugar_dict)
@@ -84,6 +75,8 @@
                 //console.log(this.blood_sugar_dict)
                // console.log(blood_sugar_dict)
                 //console.
+                //console.log(this.date_match);
+                //console.log(this.glucose_match);
                 //this.blood_sugar_dict =
             },
             insert(str, index, value) {

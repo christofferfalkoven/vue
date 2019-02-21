@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import chart from './ChartTest.vue'
 require('./assets/main.css')
 
 import "chart.js";
