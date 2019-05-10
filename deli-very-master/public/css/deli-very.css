@@ -1,0 +1,252 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	width: 100%;
+	height: 100%;
+
+}
+
+html{
+	height: 100%;
+	width: 100%;
+}
+
+.view-box {
+	width: 90%;
+	height: 50vh;
+	margin: 1em auto;
+	overflow: scroll;
+	border: 1px solid rgba(0,0,0,0.4);
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+#dots {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	background: url(/img/polacks.jpg);
+	background-repeat: no-repeat;
+	width:1920px;
+	height: 1078px;
+	cursor: crosshair;
+}
+
+#dots div {
+	position: absolute;
+	background: black;
+	color: white;
+	border-radius: 10px;
+	width:20px;
+	height:20px;
+	text-align: center;
+}
+
+#orderList {
+	top:1em;
+	left:1em;
+	position: absolute;
+	z-index: 2;
+	color:black;
+	background: rgba(255,255,255, 0.5);
+	padding: 1em;
+}
+
+.gluten, .dairy, .beef, .steak{
+	font-weight: bold;
+}
+
+#burger{
+	padding: 0;
+	margin: 0	;
+	width: auto;
+	background-color: white: ;
+	color: white;
+	margin-left: 1%;
+	padding-right 1%:
+
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+
+header>center>h1 {
+	position: absolute;
+	margin-top: 100px;
+
+}
+header{
+	border 2px dotted black;
+	border: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#contactinfo{
+	padding: 5px;
+	margin-left: : 0;
+	margin-right: 0;
+	margin-top: 2px;
+	border: 2px dotted black;
+}
+
+#paymentwhole{
+	padding: 5px;
+	margin: 0;
+	margin-top: 2px;
+	border: 2px dotted black;
+	color: black;
+}
+#confirmation{
+	padding: 1px;
+	margin-left: : 0;
+	margin-right: 0;
+	margin-top: 2px;
+	border: 2px dotted black;
+	color: black;
+}
+
+#submit{
+	padding: 5px;;
+	margin: 1%;
+}
+footer > hr{
+	opacity: 0.5;
+}
+
+.wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-gap:  1%;
+	grid-template-columns: 19.2% 19.2% 19.2% 19.2% 19.2%;
+	background-color: white;
+	color: #444;
+
+}
+.container{
+	background-color: white;
+	grid-template-columns: 18.4% auto auto auto auto;
+	grid-column-gap: 1%;
+	position: relative;
+	overflow: hidden
+
+}
+
+
+.selectburger{
+	color: black;
+}
+
+img:hover{
+	opacity: 25%;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.wrapper img:hover{
+	opacity: 0.5;
+	cursor: pointer;
+}
+#contactinfo{
+	color: black;
+}
+
+
+
+.burgerVue{
+	display: inline-block;
+	text-align: center;
+	background: #333;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	position: relative;
+}
+
+
+#mainVueId{
+	padding: 1%;
+}
+
+
+.headerWrapper img{
+	width: 100%;
+	opacity: 0.9;
+	margin-bottom: 1%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.headerWrapper h1{
+	position: absolute;
+	left: 50%;
+	top:10%;
+	transform: translate(-50%, -50%);
+	color: white;
+	font-weight: bold;
+}
+
+.burgerVue ul, .burgerVue li{
+	position: relative;
+	text-align: left;
+}
+.burgerVue h2{
+	position: relative;
+
+}
+.burgerVue p{
+	position: relative;
+
+}
+.burgerVue img{
+	position: relative;
+
+}
+
+.brgBtn{
+	background-color: #DDAD49;
+	color: white;
+	padding: 2%;
+	margin: 0;
+	border: 1px solid white;
+	cursor: pointer;
+	bottom: 0;
+	border-radius: 5px;
+	width: 100%;
+	position: relative;
+}
+
+.brgBtn:hover{
+	opacity: 0.6;
+}
+
+.wrapper img{
+	width: 100%;
+
+}
+.orderedBurgers{
+	width: 50%;
+	text-align: left;
+}
+.orderedBurgers ul{
+	display: block;
+	background-color: #333;
+	color: white;
+	margin: 15px;
+	border-radius: 5px;
+}
+.closeButton {
+	float: right;
+	font-size: 15px;
+	color: white;
+	right: 5px;
+}
+
+.closeButton:hover, .closeButton:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}

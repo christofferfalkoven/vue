@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>BurgerWorld</title>
+        <meta charset="utf-8"/>
+        <script src="/socket.io/socket.io.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/deli-very.css">
+        <script src="/vue/vue.js" defer></script>
+        <script type="text/javascript" src="js/menu.js" defer></script>
+
+        <script src="js/deli-very.js" defer></script>
+        <!--<script src="js/js_script.js"defer> </script>-->
+        <link rel="stylesheet" type="text/css" href="css/deli-very.css">
+        <!--<script src="js/vue_script.js"defer></script>-->
+
+</head>
+<body>
+        <main id="mainVueId">
+                <header>
+                        <div class="headerWrapper">
+                                <img src="img/headerpic.jpg" alt="headerpicture">
+                                <h1>Welcome to BurgerWorld! </h1>
+                        </div>
+                </header>
+                <div class="wrapper">
+                        <div class="burgerVue" v-for="(burger, index) in menu">
+                                <div class="burgerName">
+                                        <h2>
+                                                {{burger.name}}
+                                        </h2>
+                                </div>
+                                <div class="burgerVueImg">
+                                        <img v-bind:src="burger.img">
+                                </div>
+                                <div class="burgerLists">
+                                        <ul>
+                                                <li>
+                                                        <p v-if="burger.gluten"> Contains gluten. </p>
+                                                        <p v-if="!burger.gluten"> Glutenfree. </p>
+                                                        <li>
+                                                                <p v-if="burger.lactose"> Contains lactose. </p>
+                                                                <p v-if="!burger.lactose"> Lactose free. </p>
+                                                                <p v-if="!burger.lactose && !burger.gluten"> Gluten and lactose free!! </p>
+                                                        </li>
+                                                        <li>
+                                                                <p>
+                                                                        Contains {{burger.kCal}} kalories
+                                                                </p>
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                        <div>
+                                                <button class="brgBtn" v-on:click="addBurger(burger.name)"> Add one "{{burger.name}}"
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <section id="contactinfo">
+                                        <h3>Customer information</h3>
+                                        <p>This is where you provide useful information for delivery</p>
+                                        <h3>Delivery infrormation:</h3>
+                                        <form>
+                                                <p>
+                                                        <label for="firstname">First</label><br>
+                                                        <input type="text" id="firstname" name="fn" required="required" placeholder="First name">
+                                                </p>
+                                                <p>
+                                                        <label for="lastname">Last</label><br>
+                                                        <input type="text" id="lastname" name="ln" placeholder="Last name">
+                                                </p>
+                                                <p>
+                                                        <label for="email">E-mail</label><br>
+                                                        <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+                                                </p>
+                                        </form>
+
+                                        <h1> Click in the map! </h1>
+                                        <div class="view-box">
+                                                <div id="dots" v-on:click="displayOrder">
+                                                        <div
+                                                        v-bind:style="{ left: ord.x + 'px', top: ord.y + 'px'}">
+                                                        {{ord.mark}}
+                                                </div>
+                                        </div>
+                                </section>
+                                <section id="paymentwhole">
+                                        <p>
+                                                <label for="payment">Payment option</label><br>
+                                                <select id="payment" name="rcp">
+                                                        <option>Credit card</option>
+                                                        <option>Debit card</option>
+                                                        <option>Swish</option>
+                                                        <option>Invoice</option>
+                                                        <option>Pay with cash</option>
+                                                </select>
+                                        </p>
+
+                                        <form action="" id="sex">
+                                                <input type="radio" id="man" value="male"> Male<br>
+                                                <input type="radio" id="woman" value="female"> Female<br>
+                                                <input type="radio" id="other"value="other"> Other
+                                        </form>
+                                </section>
+                                <section id ="submit">
+                                        <button  type="submit" id="submitID" v-on:click = "addOrder">
+                                                Confirm order
+                                                <img src="img/deliverysymbol.png" height="10px">
+                                        </button>
+                                </section>
+                                <section id ="confirmation">
+                                        <h3>Your order!!</h3>
+
+                                        <div class="orderedBurgers">
+                                                <ul v-for="value in savedBurgers">
+                                                        <span class="closeButton">&times;</span>
+                                                        1x {{value}}
+                                                </ul>
+                                        </div>
+
+                                        <h5>Delivery details!:</h5>
+                                        <div>
+                                                <div class="orderedBurgers">
+                                                        <ul v-for="(value, key) in customerOrder">
+                                                                {{key}}: {{value}}
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                </section>
+                        </main>
+                </div>
+                <footer>
+                        <hr />
+                        2018 Chris burgerjoint.
+                </footer>
+        </body>
+        </html>

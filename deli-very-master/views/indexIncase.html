@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Page title shown in window title</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="C:/Users/Christoffer/Desktop/deli-very-master/public/css/deli-very.css">
+        <script src="https://vuejs.org/js/vue.js"></script>
+        <script src="js/js_script.js"></script>
+        <script src="js/vue_script.js"></script>
+    </head>
+    <body>
+	<main>
+                <header>
+                        <h1>Welcome to BurgerWorld! </h1>
+                        <div><img src="headerpic.jpg" alt="headerpicture"></div>
+                </header>
+                <div id="app">
+                        {{message}}
+                </div>
+                <script>
+                        new Vue({
+                                el: '#app',
+                                data: {
+                                        'message': 'hello world'
+                                }
+                        });
+                </script>
+		<section id="burger">
+                        <div class="wrapper">
+                                <div class="box a">The good burger</div>
+                                <div class="box b">The bad burger</div>
+                                <div class="box c">The ugly burger</div>
+                                <div class="box d">
+                                        <center><img src="hamburger1.jpg" alt="The good burger picture"   height="240px"></center>
+                                </div>
+                                <div class="box e">
+                                        <center><img src="hamburger2.jpg" alt="The bad burger picture" height="240px"></center>
+                                </div>
+                                <div class="box f">
+                                        <center><img src="hamburger3.jpg" alt="The ugly burger picture" height="240px"></center>
+                                </div>
+                                <div class="box g">
+                                        <ul>
+                                                <section class="ingedientsTGB">
+                                                       <li>Made with <section class="beef">beef</section></li>
+                                                       <li>Contains <section class="gluten"> gluten</section></li>
+                                                       <li>Contains <section class="dairy"> dairy</section></li>
+                                               </section>
+                                       </ul>
+                                </div>
+                                <div class="box h">
+                                        <ul>
+                                               <li>Made with <section class="steak">steak</section></li>
+                                               <li>Contains <section class="gluten"> gluten</section></li>
+                                               <li>Contains <section class="dairy"> dairy</section></li>
+                                       </ul>
+                                </div>
+                                <div class="box i">
+                                        <ul>
+                                                <section class="ingedientsTUB">
+                                                       <li>Made with <section class="beef">beef</section></li>
+                                                       <li>Contains <section class="gluten"> gluten</section></li>
+                                                       <li>Contains <section class="dairy"> dairy</section></li>
+                                               </section>
+                                       </ul>
+                                </div>
+                        </div>
+		 </section>
+		 <section id="contactinfo">
+	    		<h3>Customer information</h3>
+			<p>This is where you provide useful information for delivery</p>
+                        <h3>Delivery infrormation:</h3>
+                        <p>
+                                <label for="firstname">First</label><br>
+                                <input type="text" id="firstname" name="fn" required="required" placeholder="First name">
+                        </p>
+                        <p>
+                                <label for="lastname">Last</label><br>
+                                <input type="text" id="lastname" name="ln" placeholder="Last name">
+                        </p>
+                        <p>
+                                <label for="email">E-mail</label><br>
+                                <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+                        </p>
+                        <p>
+                                <label for="street">Street</label><br>
+                                <input type="street" id="street" name="st" required="required" placeholder="Street name">
+                        </p>
+                        <p>
+                                <label for="house">House</label><br>
+                                <input type="house" id="house" name="ho" required="required" placeholder="House number">
+                        </p>
+		</section>
+                <section id="paymentwhole">
+                                <p>
+                                        <label for="payment">Payment option</label><br>
+                                        <select id="payment" name="rcp">
+                                                <option>Credit card</option>
+                                                <option>Debit card</option>
+                                                <option>Swish</option>
+                                                <option>Invoice</option>
+                                                <option>Pay with cash</option>
+                                        </select>
+                                </p>
+
+                        <form action="">
+                                <input type="radio" name="sex" value="male"> Male<br>
+                                <input type="radio" name="sex" value="female"> Female<br>
+                                <input type="radio" name="sex" value="other"> Other
+                        </form>
+                </section>
+                <section id ="submit">
+                        <button  type="submit">
+                                Confirm order
+                                <img src="deliverysymbol.png" height="10px">
+                        </button>
+                </section>
+	</main>
+	<footer>
+                <hr />
+                2018 Chris burgerjoint.
+	</footer>
+    </body>
+</html>
